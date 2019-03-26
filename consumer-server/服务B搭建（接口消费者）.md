@@ -1,3 +1,4 @@
+### [项目地址](https://github.com/2425358736/spring-cloud)
 ## 服务b搭建（接口消费者）
 1. 在spring-cloud项目中新建consumer-server （maven）模块
 2. pom.xml 引入开发包及插件
