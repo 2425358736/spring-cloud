@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: register-server
+server:
+  port: 5000 # 注册中心占用6000端口
+eureka:
+  instance:
+    hostname: 127.0.0.1
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
