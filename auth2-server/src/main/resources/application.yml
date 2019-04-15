@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: auth2-server
+server:
+  port: 5005
+#注册中心地址
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:5000/eureka/
+  instance:
+    hostname: 127.0.0.1
+    instance-id: 127.0.0.1:${eureka.instance.appname}:5001
+    appname: auth2-server
+#security:
+#  oauth2:
+#    resource:
+#      filter-order: 3

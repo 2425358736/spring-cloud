@@ -2,7 +2,7 @@ spring:
   application:
     name: register-server
 server:
-  port: 5000 # 注册中心占用6000端口
+  port: 5000
 eureka:
   instance:
     hostname: 127.0.0.1

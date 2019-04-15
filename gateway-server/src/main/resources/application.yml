@@ -20,5 +20,6 @@ eureka:
       defaultZone: http://127.0.0.1:5000/eureka/
   instance:
     hostname: 127.0.0.1
-    instance-id: http://127.0.0.1:5003
+    instance-id: 127.0.0.1:${eureka.instance.appname}}:5003
+    appname: gateway-server
 

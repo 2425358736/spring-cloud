@@ -15,6 +15,7 @@
         <module>provide-server</module>
         <module>consumer-server</module>
         <module>gateway-server</module>
+        <module>auth2-server</module>
     </modules>
 
     <properties>
