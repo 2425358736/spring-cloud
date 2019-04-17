@@ -1,5 +1,11 @@
 package com.springcloud.demo.domain;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
+
 /**
  * 开发公司：青岛海豚数据技术有限公司
  * 版权：青岛海豚数据技术有限公司
@@ -7,34 +13,66 @@ package com.springcloud.demo.domain;
  * User
  *
  * @author 刘志强
- * @created Create Time: 2019/3/26
+ * @created Create Time: 2019/4/15
  */
-public class User {
-    private Long id;
-    private String userName;
+public class User implements UserDetails {
+    private String UserName;
     private String password;
 
-    public Long getId() {
-        return id;
+    private List<Permission> list;
+
+    public List<Permission> getList() {
+        return list;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setList(List<Permission> list) {
+        this.list = list;
     }
 
     public String getUserName() {
-        return userName;
+        return UserName;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
+        UserName = userName;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.list;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.getUserName();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

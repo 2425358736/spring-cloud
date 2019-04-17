@@ -1,8 +1,11 @@
 package com.springcloud.demo.controller;
 
+import com.springcloud.demo.domain.AuthToken;
 import com.springcloud.demo.domain.User;
+import com.springcloud.demo.service.feign.AuthService;
 import com.springcloud.demo.service.feign.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -21,6 +24,8 @@ import java.util.Map;
 public class TestController {
     @Autowired
     public TestService testService;
+    @Autowired
+    public AuthService authService;
 
     @GetMapping("/getName")
     public String getName() {
@@ -35,9 +40,25 @@ public class TestController {
     @PostMapping("/getUserInfo")
     public User getUserInfo() {
         User user = new User();
-        user.setId(new Long("123"));
         user.setUserName("刘志强");
         user.setPassword("123456");
         return testService.getUserInfo(user);
+    }
+
+    @PostMapping("/getToken")
+    public AuthToken getToken(String userName, String password) {
+        return authService.getToken("Basic Y29uc3VtZXItc2VydmVyOjEyMw==",userName, password, "password");
+    }
+
+    @PreAuthorize("hasAnyAuthority('sys:sysuser')")
+    @PostMapping("/ceshi1")
+    public String ceshi1() {
+      return "nihao";
+    }
+
+    @PreAuthorize("hasAnyAuthority('dddddddddd')")
+    @PostMapping("/ceshi2")
+    public String ceshi2() {
+        return "ceshi2";
     }
 }

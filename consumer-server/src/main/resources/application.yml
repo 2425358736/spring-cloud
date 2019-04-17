@@ -1,7 +1,18 @@
 spring:
   application:
     name: consumer-server
-
+  #redis配置数据
+  redis:
+    hostName: 117.73.8.227
+    port: 6379
+    database: 0
+    password:
+    pool:
+      maxActive: 8
+      maxWait: -1
+      maxIdle: 100
+      minIdle: 0
+    timeout: 5000
 server:
   port: 5002
 
@@ -19,3 +30,4 @@ eureka:
     hostname: 127.0.0.1
     instance-id: 127.0.0.1:${eureka.instance.appname}:5002
     appname: consumer-server
+
