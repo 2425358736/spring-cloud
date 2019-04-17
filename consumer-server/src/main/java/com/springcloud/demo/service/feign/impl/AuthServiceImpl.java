@@ -5,9 +5,6 @@ import com.springcloud.demo.service.feign.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * 开发公司：青岛海豚数据技术有限公司
  * 版权：青岛海豚数据技术有限公司

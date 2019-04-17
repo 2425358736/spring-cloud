@@ -1,6 +1,5 @@
 package com.springcloud.demo.service.feign;
 
-import com.springcloud.demo.config.feign.FeignConfig;
 import com.springcloud.demo.domain.User;
 import com.springcloud.demo.service.feign.impl.TestImpl;
 import org.springframework.cloud.netflix.feign.FeignClient;
@@ -17,9 +16,6 @@ import java.util.Map;
  * @author 刘志强
  * @created Create Time: 2019/3/26
  */
-// 可以自定义超时规则，但不推荐
-// fallback 走熔断处理的类 当请求第三方超时或出错时会执行TestImpl类中对应的方法
-//@FeignClient(value = "provide-server", configuration = FeignConfig.class, fallback = TestImpl.class)
 @FeignClient(value = "provide-server", fallback = TestImpl.class)
 public interface TestService {
     @RequestMapping(method = RequestMethod.GET, value = "/test/getName")

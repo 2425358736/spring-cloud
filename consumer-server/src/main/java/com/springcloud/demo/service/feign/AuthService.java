@@ -1,6 +1,5 @@
 package com.springcloud.demo.service.feign;
 
-import com.springcloud.demo.config.feign.FeignConfig;
 import com.springcloud.demo.domain.AuthToken;
 import com.springcloud.demo.service.feign.impl.AuthServiceImpl;
 import org.springframework.cloud.netflix.feign.FeignClient;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Map;
 
 /**
  * 开发公司：青岛海豚数据技术有限公司
