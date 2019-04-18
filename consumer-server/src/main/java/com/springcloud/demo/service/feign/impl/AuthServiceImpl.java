@@ -2,6 +2,7 @@ package com.springcloud.demo.service.feign.impl;
 
 import com.springcloud.demo.domain.AuthToken;
 import com.springcloud.demo.service.feign.AuthService;
+import com.springcloud.demo.service.feign.JWTService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Component;
  * @created Create Time: 2019/4/16
  */
 @Component
-public class AuthServiceImpl implements AuthService {
+public class AuthServiceImpl implements AuthService, JWTService {
     @Autowired
     public AuthService authService;
     @Override

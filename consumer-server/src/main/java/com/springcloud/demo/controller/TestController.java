@@ -3,6 +3,7 @@ package com.springcloud.demo.controller;
 import com.springcloud.demo.domain.AuthToken;
 import com.springcloud.demo.domain.User;
 import com.springcloud.demo.service.feign.AuthService;
+import com.springcloud.demo.service.feign.JWTService;
 import com.springcloud.demo.service.feign.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -26,6 +27,8 @@ public class TestController {
     public TestService testService;
     @Autowired
     public AuthService authService;
+    @Autowired
+    public JWTService jwtService;
 
     @GetMapping("/getName")
     public String getName() {
@@ -48,6 +51,11 @@ public class TestController {
     @PostMapping("/getToken")
     public AuthToken getToken(String userName, String password) {
         return authService.getToken("Basic Y29uc3VtZXItc2VydmVyOjEyMw==",userName, password, "password");
+    }
+
+    @PostMapping("/getJWTToken")
+    public AuthToken getJWTToken(String userName, String password) {
+        return jwtService.getToken("Basic c2VydmVyOjEyMw==",userName, password, "password");
     }
 
     @PreAuthorize("hasAnyAuthority('sys:sysuser')")

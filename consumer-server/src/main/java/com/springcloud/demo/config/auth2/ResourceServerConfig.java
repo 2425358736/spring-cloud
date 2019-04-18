@@ -11,6 +11,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 import redis.clients.jedis.JedisPoolConfig;
 
@@ -25,7 +27,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
     public void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/test/getToken").permitAll()
+                .antMatchers("/test/getToken","/test/getJWTToken").permitAll()
                 .antMatchers("/**").authenticated()
                 .anyRequest()
                 .permitAll();
@@ -33,14 +35,21 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 
     @Bean(name = "tokenStore")
     public TokenStore tokenStore(JedisConnectionFactory jedisConnectionFactory) {
-        RedisTokenStore redis = new RedisTokenStore(jedisConnectionFactory);
-        return redis;
+//        RedisTokenStore redis = new RedisTokenStore(jedisConnectionFactory);
+//        return redis;
+        return new JwtTokenStore( jwtAccessTokenConverter());
     }
     @Override
     public void configure(ResourceServerSecurityConfigurer resourceServerSecurityConfigurer) throws Exception {
         resourceServerSecurityConfigurer.tokenStore(tokenStore);
     }
 
+    @Bean(name = "jwtAccessTokenConverter")
+    public JwtAccessTokenConverter jwtAccessTokenConverter(){
+        JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
+        jwtAccessTokenConverter.setSigningKey("123456");
+        return jwtAccessTokenConverter;
+    }
 
     @Bean(name = "jedisPoolConfig")
     @ConfigurationProperties(prefix = "spring.redis.pool")

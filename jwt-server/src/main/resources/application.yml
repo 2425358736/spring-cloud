@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: jwt-server
+server:
+  port: 5006
+#注册中心地址
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:5000/eureka/
+  instance:
+    hostname: 127.0.0.1
+    instance-id: 127.0.0.1:${eureka.instance.appname}:5006
+    appname: jwt-server
+security:
+  oauth2:
+    resource:
+      filter-order: 3

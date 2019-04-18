@@ -16,6 +16,7 @@
         <module>consumer-server</module>
         <module>gateway-server</module>
         <module>auth2-server</module>
+        <module>jwt-server</module>
     </modules>
 
     <properties>
