@@ -35,9 +35,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter{
 
     @Bean(name = "tokenStore")
     public TokenStore tokenStore(JedisConnectionFactory jedisConnectionFactory) {
-//        RedisTokenStore redis = new RedisTokenStore(jedisConnectionFactory);
-//        return redis;
-        return new JwtTokenStore( jwtAccessTokenConverter());
+        RedisTokenStore redis = new RedisTokenStore(jedisConnectionFactory);
+        return redis;
+//        return new JwtTokenStore( jwtAccessTokenConverter());
     }
     @Override
     public void configure(ResourceServerSecurityConfigurer resourceServerSecurityConfigurer) throws Exception {

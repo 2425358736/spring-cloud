@@ -1,13 +1,31 @@
+---
 spring:
+  profiles: proOne
   application:
-    name: register-server
+    name: proOne
 server:
   port: 5000
 eureka:
   instance:
     hostname: 127.0.0.1
+    instance-id: 127.0.0.1:${eureka.instance.appname}:5000
+    appname: proOne
   client:
-    registerWithEureka: false
-    fetchRegistry: false
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://localhost:5100/eureka/
+---
+
+spring:
+  profiles: proTwo
+  application:
+    name: proTwo
+server:
+  port: 5100
+eureka:
+  instance:
+    hostname: localhost
+    instance-id: 127.0.0.1:${eureka.instance.appname}:5100
+    appname: proTwo
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:5000/eureka/

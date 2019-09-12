@@ -8,8 +8,8 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://127.0.0.1:5000/eureka/
+      defaultZone: http://127.0.0.1:5000/eureka/,http://localhost:5100/eureka/
   instance:
     hostname: 127.0.0.1
-    instance-id: 127.0.0.1:${eureka.instance.appname}}:5001
-    appname: provide-server
+    instance-id: 127.0.0.1:${eureka.instance.appname}:5001
+    appname: provide-server22222222222222

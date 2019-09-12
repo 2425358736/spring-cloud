@@ -3,7 +3,7 @@ spring:
     name: consumer-server
   #redis配置数据
   redis:
-    hostName: 117.73.8.227
+    hostName: 123.206.19.217
     port: 6379
     database: 0
     password:
@@ -35,7 +35,7 @@ hystrix:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://127.0.0.1:5000/eureka/
+      defaultZone: http://127.0.0.1:5000/eureka/,http://localhost:5100/eureka/
   instance:
     hostname: 127.0.0.1
     instance-id: 127.0.0.1:${eureka.instance.appname}:5002

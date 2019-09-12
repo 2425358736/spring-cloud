@@ -3,7 +3,7 @@ spring:
     name: auth2-server
   #redis配置数据
   redis:
-    hostName: 117.73.8.227
+    hostName: 123.206.19.217
     port: 6379
     database: 0
     password:
