@@ -20,6 +20,9 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     @Qualifier(value = "authenticationManagerBean")
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
+
     // 配置客户端基本信息
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -34,7 +37,8 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.tokenStore(tokenStore()).tokenEnhancer(jwtAccessTokenConverter())
-                .authenticationManager(authenticationManager);
+                .authenticationManager(authenticationManager)
+                .userDetailsService(userDetailsService);
     }
 
     @Bean
